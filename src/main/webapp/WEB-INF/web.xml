@@ -3,5 +3,25 @@
  "http://java.sun.com/dtd/web-app_2_3.dtd" >
 
 <web-app>
-  <display-name>Archetype Created Web Application</display-name>
+  <display-name>Storycloud</display-name>
+    <filter>
+      <filter-name>convention filter</filter-name>
+      <filter-class>com.spannerinworks.storycloud.convention.ConventionFilter</filter-class>
+      <init-param>
+        <param-name>dispatcher path</param-name>
+        <param-value>/dispatch</param-value>
+      </init-param>
+    </filter>
+    <filter-mapping>
+      <filter-name>convention filter</filter-name>
+      <url-pattern>/*</url-pattern>
+    </filter-mapping>
+    <servlet>
+        <servlet-name>convention dispatcher</servlet-name>
+        <servlet-class>com.spannerinworks.storycloud.convention.ConventionDispatcherServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>convention dispatcher</servlet-name>
+        <url-pattern>/dispatch/*</url-pattern>
+    </servlet-mapping>
 </web-app>
