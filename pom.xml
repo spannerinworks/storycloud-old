@@ -5,7 +5,7 @@
     <version>1.0-SNAPSHOT</version>
     <packaging>war</packaging>
     <name>storycloud Tapestry 5 Application</name>
-        <dependencies>
+    <dependencies>
         <dependency>
             <groupId>org.apache.tapestry</groupId>
             <artifactId>tapestry-core</artifactId>
@@ -43,6 +43,73 @@ of testing facilities designed for use with TestNG (http://testng.org/), so it's
             <version>2.5</version>
             <scope>provided</scope>
         </dependency>
+
+		    <!-- Google App Engine API -->
+		    <dependency>
+		      <groupId>com.google.appengine</groupId>
+		      <artifactId>appengine-api-1.0-sdk</artifactId>
+		      <version>1.5.0</version>
+		    </dependency>
+		
+		    <dependency>
+		      <groupId>com.google.appengine</groupId>
+		      <artifactId>appengine-api-labs</artifactId>
+		      <version>1.5.0</version>
+		    </dependency>
+		
+		    <dependency>
+		      <groupId>com.google.appengine</groupId>
+		      <artifactId>appengine-jsr107cache</artifactId>
+		      <version>1.5.0</version>
+		    </dependency>
+		
+		    <dependency>
+		      <groupId>org.datanucleus</groupId>
+		      <artifactId>datanucleus-core</artifactId>
+		      <version>1.1.5</version>
+		    </dependency>
+		
+		    <dependency>
+		      <groupId>org.datanucleus</groupId>
+		      <artifactId>datanucleus-appengine</artifactId>
+		      <version>1.0.8.final</version>
+		      <scope>runtime</scope>
+		    </dependency>
+		
+		    <dependency>
+		      <groupId>org.datanucleus</groupId>
+		      <artifactId>datanucleus-jpa</artifactId>
+		      <version>1.1.5</version>
+		      <scope>runtime</scope>
+		    </dependency>
+		
+		    <dependency>
+		      <groupId>org.apache.geronimo.specs</groupId>
+		      <artifactId>geronimo-jta_1.1_spec</artifactId>
+		      <version>1.1.1</version>
+		      <scope>runtime</scope>
+		    </dependency>
+		
+		    <dependency>
+		      <groupId>org.apache.geronimo.specs</groupId>
+		      <artifactId>geronimo-jpa_3.0_spec</artifactId>
+		      <version>1.1.1</version>
+		      <scope>runtime</scope>
+		    </dependency>
+		
+		    <dependency>
+		      <groupId>javax.jdo</groupId>
+		      <artifactId>jdo2-api</artifactId>
+		      <version>2.3-eb</version>
+		      <scope>runtime</scope>
+		    </dependency>
+		
+		    <dependency>
+		      <groupId>net.sf.jsr107cache</groupId>
+		      <artifactId>jsr107cache</artifactId>
+		      <version>1.1</version>
+		      <scope>runtime</scope>
+		    </dependency>
 
     </dependencies>
     <build>

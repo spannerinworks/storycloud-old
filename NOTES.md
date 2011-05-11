@@ -55,3 +55,88 @@ If the version changes you hane to select it:
 
 https://appengine.google.com/deployment?app_id=storycloud
 
+== install the app engine jars into the local maven repo ==
+NB: some of these might not be needed
+
+mvn install:install-file -Dfile=/code/java/appengine-java-sdk-1.5.0/lib/user/appengine-api-1.0-sdk-1.5.0.jar -DgroupId=com.google.appengine -DartifactId=appengine-api-1.0-sdk -Dversion=1.5.0 -Dpackaging=jar -DgeneratePom=true
+mvn install:install-file -Dfile=/code/java/appengine-java-sdk-1.5.0/lib/user/appengine-api-labs-1.5.0.jar -DgroupId=com.google.appengine -DartifactId=appengine-api-labs -Dversion=1.5.0 -Dpackaging=jar -DgeneratePom=true
+mvn install:install-file -Dfile=/code/java/appengine-java-sdk-1.5.0/lib/user/appengine-jsr107cache-1.5.0.jar -DgroupId=com.google.appengine -DartifactId=appengine-jsr107cache -Dversion=1.5.0 -Dpackaging=jar -DgeneratePom=true
+
+mvn install:install-file -Dfile=/code/java/appengine-java-sdk-1.5.0/lib/user/orm/datanucleus-appengine-1.0.8.final.jar -DgroupId=org.datanucleus -DartifactId=datanucleus-appengine -Dversion=1.0.8.final -Dpackaging=jar -DgeneratePom=true
+mvn install:install-file -Dfile=/code/java/appengine-java-sdk-1.5.0/lib/user/orm/datanucleus-core-1.1.5.jar -DgroupId=org.datanucleus -DartifactId=datanucleus-core -Dversion=1.1.5 -Dpackaging=jar -DgeneratePom=true
+mvn install:install-file -Dfile=/code/java/appengine-java-sdk-1.5.0/lib/user/orm/user/datanucleus-jpa-1.1.5.jar -DgroupId=org.datanucleus -DartifactId=datanucleus-jpa -Dversion=1.1.5 -Dpackaging=jar -DgeneratePom=true
+
+mvn install:install-file -Dfile=/code/java/appengine-java-sdk-1.5.0/lib/user/orm/geronimo-jpa_3.0_spec-1.1.1.jar -DgroupId=org.apache.geronimo.specs -DartifactId=geronimo-jpa_3.0_spec -Dversion=1.1.1 -Dpackaging=jar -DgeneratePom=true
+mvn install:install-file -Dfile=/code/java/appengine-java-sdk-1.5.0/lib/user/orm/geronimo-jta_3.0_spec-1.1.1.jar -DgroupId=org.apache.geronimo.specs -DartifactId=geronimo-jta_3.0_spec -Dversion=1.1.1 -Dpackaging=jar -DgeneratePom=true
+
+mvn install:install-file -Dfile=/code/java/appengine-java-sdk-1.5.0/lib/user/orm/jdo2-api-2.3-eb.jar -DgroupId=javax.jdo -DartifactId=jdo2-api -Dversion=2.3-eb -Dpackaging=jar -DgeneratePom=true
+mvn install:install-file -Dfile=/code/java/appengine-java-sdk-1.5.0/lib/user/jsr107cache-1.1.jar -DgroupId=net.sf.jsr107cache -DartifactId=jsr107cache -Dversion=1.1 -Dpackaging=jar -DgeneratePom=true
+
+== add depedencies in pom ==
+
+        <!-- Google App Engine API -->
+        <dependency>
+          <groupId>com.google.appengine</groupId>
+          <artifactId>appengine-api-1.0-sdk</artifactId>
+          <version>1.5.0</version>
+        </dependency>
+    
+        <dependency>
+          <groupId>com.google.appengine</groupId>
+          <artifactId>appengine-api-labs</artifactId>
+          <version>1.5.0</version>
+        </dependency>
+    
+        <dependency>
+          <groupId>com.google.appengine</groupId>
+          <artifactId>appengine-jsr107cache</artifactId>
+          <version>1.5.0</version>
+        </dependency>
+    
+        <dependency>
+          <groupId>org.datanucleus</groupId>
+          <artifactId>datanucleus-core</artifactId>
+          <version>1.1.5</version>
+        </dependency>
+    
+        <dependency>
+          <groupId>org.datanucleus</groupId>
+          <artifactId>datanucleus-appengine</artifactId>
+          <version>1.0.8.final</version>
+          <scope>runtime</scope>
+        </dependency>
+    
+        <dependency>
+          <groupId>org.datanucleus</groupId>
+          <artifactId>datanucleus-jpa</artifactId>
+          <version>1.1.5</version>
+          <scope>runtime</scope>
+        </dependency>
+    
+        <dependency>
+          <groupId>org.apache.geronimo.specs</groupId>
+          <artifactId>geronimo-jta_1.1_spec</artifactId>
+          <version>1.1.1</version>
+          <scope>runtime</scope>
+        </dependency>
+    
+        <dependency>
+          <groupId>org.apache.geronimo.specs</groupId>
+          <artifactId>geronimo-jpa_3.0_spec</artifactId>
+          <version>1.1.1</version>
+          <scope>runtime</scope>
+        </dependency>
+    
+        <dependency>
+          <groupId>javax.jdo</groupId>
+          <artifactId>jdo2-api</artifactId>
+          <version>2.3-eb</version>
+          <scope>runtime</scope>
+        </dependency>
+    
+        <dependency>
+          <groupId>net.sf.jsr107cache</groupId>
+          <artifactId>jsr107cache</artifactId>
+          <version>1.1</version>
+          <scope>runtime</scope>
+        </dependency>
