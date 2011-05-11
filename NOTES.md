@@ -1,34 +1,31 @@
 = maven =
 
 == Generate Scaffold ==
-mvn archetype:generate -DarchetypeGroupId=org.apache.maven.archetypes -DarchetypeArtifactId=maven-archetype-webapp -DgroupId=com.spannerinworks.storycloud -DartifactId=storycloud
+mvn archetype:generate -DarchetypeCatalog=http://tapestry.apache.org
 
-== Compile / Test / Make War ==
-mvn clean package
-
-== Jetty plugin ==
-http://wiki.eclipse.org/Jetty/Feature/Jetty_Maven_Plugin
-
-== configure pom.xml ==
-
-<dependency>
-  <groupId>org.mortbay.jetty</groupId>
-  <artifactId>servlet-api</artifactId>
-  <version>3.0.20100224</version>
-  <scope>provided</scope>
-</dependency> 
-
-<build>
-  .....
-  <plugins>
-    <plugin>
-      <groupId>org.mortbay.jetty</groupId>
-      <artifactId>jetty-maven-plugin</artifactId>
-      <version>8.0.0.M2</version>
-      <configuration>
-        <scanIntervalSeconds>10</scanIntervalSeconds>
-      </configuration>
-    </plugin>
+[INFO] No archetype defined. Using maven-archetype-quickstart (org.apache.maven.archetypes:maven-archetype-quickstart:1.0)
+Choose archetype:
+1: http://tapestry.apache.org -> quickstart (Tapestry 5.2.4 Quickstart Project)
+2: http://tapestry.apache.org -> tapestry-archetype (Tapestry 4.1.6 Archetype)
+Choose a number: : 1
+Choose version: 
+1: 5.0.19
+2: 5.1.0.5
+3: 5.2.4
+Choose a number: 3: 3
+Define value for property 'groupId': : com.spannerinworks
+Define value for property 'artifactId': : storycloud
+Define value for property 'version':  1.0-SNAPSHOT: : 
+Define value for property 'package':  com.spannerinworks: : com.spannerinworks.storycloud
+Confirm properties configuration:
+groupId: com.spannerinworks
+artifactId: storycloud
+version: 1.0-SNAPSHOT
+package: com.spannerinworks.storycloud
+ Y: : 
+[INFO] ------------------------------------------------------------------------
+[INFO] BUILD SUCCESS
+[INFO] ------------------------------------------------------------------------
 
 == eclipse config ==
  * create eclipse project files
@@ -44,8 +41,17 @@ http://wiki.eclipse.org/Jetty/Feature/Jetty_Maven_Plugin
  Name: M2_REPO
  Value: /Users/ben/.m2/repository
 
-== Run Jetty ==
+== build ==
+mvn package
+or: mvn clean package
 
-mvn jetty:run # actually runs on the code base, not the built .war
+== deploy to google app engine ==
 
+/code/java/appengine-java-sdk-1.5.0/bin/appcfg.sh update target/storycloud
+
+== versions ==
+
+If the version changes you hane to select it:
+
+https://appengine.google.com/deployment?app_id=storycloud
 
