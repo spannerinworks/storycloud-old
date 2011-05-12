@@ -12,18 +12,21 @@ import org.apache.tapestry5.BindingConstants;
 public class Layout
 {
     /** The page title, for the <title> element and the <h1> element. */
-    @Property
+    @SuppressWarnings("unused")
+	@Property
     @Parameter(required = true, defaultPrefix = BindingConstants.LITERAL)
     private String title;
 
     @Property
     private String pageName;
 
-    @Property
+    @SuppressWarnings("unused")
+	@Property
     @Parameter(defaultPrefix = BindingConstants.LITERAL)
     private String sidebarTitle;
 
-    @Property
+    @SuppressWarnings("unused")
+	@Property
     @Parameter(defaultPrefix = BindingConstants.LITERAL)
     private Block sidebar;
 
