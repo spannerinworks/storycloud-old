@@ -12,4 +12,5 @@
     </t:parameter>
   </t:beaneditform>
 
+  <t:grid source="stories"/>
 </html>

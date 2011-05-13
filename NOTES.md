@@ -64,7 +64,8 @@ mvn install:install-file -Dfile=/code/java/appengine-java-sdk-1.5.0/lib/user/app
 
 mvn install:install-file -Dfile=/code/java/appengine-java-sdk-1.5.0/lib/user/orm/datanucleus-appengine-1.0.8.final.jar -DgroupId=org.datanucleus -DartifactId=datanucleus-appengine -Dversion=1.0.8.final -Dpackaging=jar -DgeneratePom=true
 mvn install:install-file -Dfile=/code/java/appengine-java-sdk-1.5.0/lib/user/orm/datanucleus-core-1.1.5.jar -DgroupId=org.datanucleus -DartifactId=datanucleus-core -Dversion=1.1.5 -Dpackaging=jar -DgeneratePom=true
-mvn install:install-file -Dfile=/code/java/appengine-java-sdk-1.5.0/lib/user/orm/user/datanucleus-jpa-1.1.5.jar -DgroupId=org.datanucleus -DartifactId=datanucleus-jpa -Dversion=1.1.5 -Dpackaging=jar -DgeneratePom=true
+mvn install:install-file -Dfile=/code/java/appengine-java-sdk-1.5.0/lib/user/orm/datanucleus-jpa-1.1.5.jar -DgroupId=org.datanucleus -DartifactId=datanucleus-jpa -Dversion=1.1.5 -Dpackaging=jar -DgeneratePom=true
+mvn install:install-file -Dfile=/code/java/appengine-java-sdk-1.5.0/lib/tools/orm/datanucleus-enhancer-1.1.4.jar -DgroupId=org.datanucleus -DartifactId=datanucleus-enhancer -Dversion=1.1.4 -Dpackaging=jar -DgeneratePom=true
 
 mvn install:install-file -Dfile=/code/java/appengine-java-sdk-1.5.0/lib/user/orm/geronimo-jpa_3.0_spec-1.1.1.jar -DgroupId=org.apache.geronimo.specs -DartifactId=geronimo-jpa_3.0_spec -Dversion=1.1.1 -Dpackaging=jar -DgeneratePom=true
 mvn install:install-file -Dfile=/code/java/appengine-java-sdk-1.5.0/lib/user/orm/geronimo-jta_3.0_spec-1.1.1.jar -DgroupId=org.apache.geronimo.specs -DartifactId=geronimo-jta_3.0_spec -Dversion=1.1.1 -Dpackaging=jar -DgeneratePom=true

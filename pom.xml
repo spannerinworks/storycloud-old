@@ -73,42 +73,48 @@ of testing facilities designed for use with TestNG (http://testng.org/), so it's
 		      <groupId>org.datanucleus</groupId>
 		      <artifactId>datanucleus-appengine</artifactId>
 		      <version>1.0.8.final</version>
-		      <scope>runtime</scope>
 		    </dependency>
 		
 		    <dependency>
 		      <groupId>org.datanucleus</groupId>
 		      <artifactId>datanucleus-jpa</artifactId>
 		      <version>1.1.5</version>
-		      <scope>runtime</scope>
 		    </dependency>
 		
+        <dependency>
+          <groupId>org.datanucleus</groupId>
+          <artifactId>datanucleus-enhancer</artifactId>
+          <version>1.1.4</version>
+        </dependency>
+
+        <dependency>
+          <groupId>asm</groupId>
+          <artifactId>asm</artifactId>
+          <version>3.2</version>
+        </dependency>
+
 		    <dependency>
 		      <groupId>org.apache.geronimo.specs</groupId>
 		      <artifactId>geronimo-jta_1.1_spec</artifactId>
 		      <version>1.1.1</version>
-		      <scope>runtime</scope>
 		    </dependency>
 		
 		    <dependency>
 		      <groupId>org.apache.geronimo.specs</groupId>
 		      <artifactId>geronimo-jpa_3.0_spec</artifactId>
 		      <version>1.1.1</version>
-		      <scope>runtime</scope>
 		    </dependency>
 		
 		    <dependency>
 		      <groupId>javax.jdo</groupId>
 		      <artifactId>jdo2-api</artifactId>
 		      <version>2.3-eb</version>
-		      <scope>runtime</scope>
 		    </dependency>
 		
 		    <dependency>
 		      <groupId>net.sf.jsr107cache</groupId>
 		      <artifactId>jsr107cache</artifactId>
 		      <version>1.1</version>
-		      <scope>runtime</scope>
 		    </dependency>
 
     </dependencies>
@@ -118,9 +124,10 @@ of testing facilities designed for use with TestNG (http://testng.org/), so it's
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
+                <version>2.3.2</version>
                 <configuration>
-                    <source>1.5</source>
-                    <target>1.5</target>
+                    <source>1.6</source>
+                    <target>1.6</target>
                     <optimize>true</optimize>
                 </configuration>
             </plugin>
@@ -139,6 +146,27 @@ of testing facilities designed for use with TestNG (http://testng.org/), so it's
                     </requestLog>
                 </configuration>
             </plugin>
+
+
+            <plugin>
+                <groupId>org.datanucleus</groupId>
+                <artifactId>maven-datanucleus-plugin</artifactId>
+                <version>1.1.4</version>
+                <configuration>
+                    <log4jConfiguration>${basedir}/src/main/resources/log4j.properties</log4jConfiguration>
+                    <api>JPA</api>
+                    <verbose>true</verbose>
+                </configuration>
+                <executions>
+                    <execution>
+                        <phase>process-classes</phase>
+                        <goals>
+                            <goal>enhance</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+
         </plugins>
     </build>
 
