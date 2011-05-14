@@ -31,11 +31,11 @@ public class ConventionFilter implements Filter {
 
 		Controller controller = router.findController((HttpServletRequest) request);
 		
-		if (controller != null) {
-			controller.serviceRequest((HttpServletRequest)request, (HttpServletResponse)response);
-		} else {
-		    chain.doFilter(request, response);
+		if (controller != null && controller.serviceRequest((HttpServletRequest)request, (HttpServletResponse)response)) {
+			return;
 		}
+		
+		chain.doFilter(request, response);
 	}
 
 	@Override

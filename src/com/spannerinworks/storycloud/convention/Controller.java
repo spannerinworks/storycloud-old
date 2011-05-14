@@ -7,5 +7,5 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 public interface Controller {
-	void serviceRequest(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException;
+	boolean serviceRequest(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException;
 }

@@ -25,7 +25,7 @@ public class ReflectionControllerTest {
 	Mockery context = new JUnit4Mockery();
 	
 	@Test
-	public void throwExceptionWhenMethodNotFound() throws Exception {
+	public void returnFalseIfMethodNotFound() throws Exception {
 		final HttpServletRequest request = context.mock(HttpServletRequest.class);;
 		context.checking(new Expectations() {{
 		    allowing (request).getServletPath();
@@ -38,12 +38,7 @@ public class ReflectionControllerTest {
 			}
 		};
 		
-		try {
-			controller.serviceRequest(request , null);
-			assertTrue(false);
-		} catch (ServletException e) {
-			// expected
-		}
+		assertFalse(controller.serviceRequest(request , null));
 
 	}
 	
@@ -84,7 +79,7 @@ public class ReflectionControllerTest {
 			}
 		};
 
-		controller.serviceRequest(request , null);
+		assertTrue(controller.serviceRequest(request , null));
 		
 		assertTrue(called[0]);
 
