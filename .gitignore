@@ -3,3 +3,4 @@ target
 *~
 *.class
 appengine-generated
+.DS_Store

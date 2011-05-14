@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.util.List;
 
 import javax.jdo.PersistenceManager;
+import javax.jdo.PersistenceManagerFactory;
 import javax.jdo.Query;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -14,6 +15,10 @@ import com.spannerinworks.storycloud.model.Story;
 
 public class StoryController extends ReflectionController {
 	
+	public StoryController(PersistenceManagerFactory pmf) {
+		super(pmf);
+	}
+
 	public void index(HttpServletRequest req, HttpServletResponse res, PersistenceManager pm) throws ServletException, IOException {
 		Query q = pm.newQuery(Story.class);
 			
