@@ -27,7 +27,7 @@ public class ReflectionControllerTest {
 	@Test
 	public void returnFalseIfMethodNotFound() throws Exception {
 
-		HttpServletRequest request = mockRequest("/story/boom");
+		HttpServletRequest request = TestHelper.mockRequest(context, "/story/boom");
 		
 		ReflectionController controller = new ReflectionController(null) {
 			@SuppressWarnings("unused")
@@ -41,7 +41,7 @@ public class ReflectionControllerTest {
 	@Test
 	public void canExecuteActionInTransaction() throws Exception {
 
-		HttpServletRequest request = mockRequest("/story/index");
+		HttpServletRequest request = TestHelper.mockRequest(context, "/story/index");
 		final PersistenceManagerFactory pmf = context.mock(PersistenceManagerFactory.class);
 		final PersistenceManager pm = context.mock(PersistenceManager.class);
 		final Transaction transaction = context.mock(Transaction.class);
@@ -81,7 +81,7 @@ public class ReflectionControllerTest {
 	@Test
 	public void canRollbackTransaction() throws Exception {
 
-		HttpServletRequest request = mockRequest("/story/index");
+		HttpServletRequest request = TestHelper.mockRequest(context, "/story/index");
 		final PersistenceManagerFactory pmf = context.mock(PersistenceManagerFactory.class);
 		final PersistenceManager pm = context.mock(PersistenceManager.class);
 		final Transaction transaction = context.mock(Transaction.class);
@@ -118,13 +118,4 @@ public class ReflectionControllerTest {
 
 	}
 	
-	private HttpServletRequest mockRequest(String servletPath) {
-		final HttpServletRequest request = context.mock(HttpServletRequest.class);;
-		context.checking(new Expectations() {{
-		    allowing (request).getServletPath();
-		    will(returnValue("/story/boom"));
-		}});
-		return request;
-	}
-
 }

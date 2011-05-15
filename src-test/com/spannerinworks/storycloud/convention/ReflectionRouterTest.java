@@ -9,7 +9,6 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import org.jmock.Expectations;
 import org.jmock.Mockery;
 import org.jmock.integration.junit4.JMock;
 import org.jmock.integration.junit4.JUnit4Mockery;
@@ -22,11 +21,7 @@ public class ReflectionRouterTest {
 
 	@Test
 	public void testFindsExistingController() throws Exception{
-		final HttpServletRequest request = context.mock(HttpServletRequest.class);;
-		context.checking(new Expectations() {{
-		    allowing (request).getServletPath();
-		    will(returnValue("/testable_fake/boom"));
-		}});
+		HttpServletRequest request = TestHelper.mockRequest(context, "/testable_fake/boom");
 		
 		ReflectionRouter router = new ReflectionRouter("com.spannerinworks.storycloud.convention");
 		Controller controller = router.findController(request);
@@ -36,11 +31,7 @@ public class ReflectionRouterTest {
 	
 	@Test
 	public void testReturnsNullIfControllerDoesntExist() throws Exception {
-		final HttpServletRequest request = context.mock(HttpServletRequest.class);;
-		context.checking(new Expectations() {{
-		    allowing (request).getServletPath();
-		    will(returnValue("/testableblahblahblah/boom"));
-		}});
+		HttpServletRequest request = TestHelper.mockRequest(context, "/testableblahblahblah/boom");
 		
 		ReflectionRouter router = new ReflectionRouter("com.spannerinworks.storycloud.convention");
 		Controller controller = router.findController(request);
