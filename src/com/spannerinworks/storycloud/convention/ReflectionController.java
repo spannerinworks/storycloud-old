@@ -18,7 +18,6 @@ public abstract class ReflectionController implements Controller {
 		this.pmf = pmf;
 	}
 
-	// TODO: find a better way of detecting method with exception handling
 	public boolean serviceRequest(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		Method action = findAction(request);
 		if (action != null) {

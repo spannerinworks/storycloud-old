@@ -26,11 +26,8 @@ public class ReflectionControllerTest {
 	
 	@Test
 	public void returnFalseIfMethodNotFound() throws Exception {
-		final HttpServletRequest request = context.mock(HttpServletRequest.class);;
-		context.checking(new Expectations() {{
-		    allowing (request).getServletPath();
-		    will(returnValue("/story/boom"));
-		}});
+
+		HttpServletRequest request = mockRequest("/story/boom");
 		
 		ReflectionController controller = new ReflectionController(null) {
 			@SuppressWarnings("unused")
@@ -39,13 +36,12 @@ public class ReflectionControllerTest {
 		};
 		
 		assertFalse(controller.serviceRequest(request , null));
-
 	}
 	
 	@Test
 	public void canExecuteActionInTransaction() throws Exception {
 
-		final HttpServletRequest request = context.mock(HttpServletRequest.class);;
+		HttpServletRequest request = mockRequest("/story/index");
 		final PersistenceManagerFactory pmf = context.mock(PersistenceManagerFactory.class);
 		final PersistenceManager pm = context.mock(PersistenceManager.class);
 		final Transaction transaction = context.mock(Transaction.class);
@@ -65,9 +61,6 @@ public class ReflectionControllerTest {
 		    one (transaction).commit();
 		    one (transaction).isActive();
 		    will(returnValue(false));
-
-		    allowing (request).getServletPath();
-		    will(returnValue("/story/index"));
 		}});
 
 		final boolean[] called = {false};
@@ -88,7 +81,7 @@ public class ReflectionControllerTest {
 	@Test
 	public void canRollbackTransaction() throws Exception {
 
-		final HttpServletRequest request = context.mock(HttpServletRequest.class);;
+		HttpServletRequest request = mockRequest("/story/index");
 		final PersistenceManagerFactory pmf = context.mock(PersistenceManagerFactory.class);
 		final PersistenceManager pm = context.mock(PersistenceManager.class);
 		final Transaction transaction = context.mock(Transaction.class);
@@ -108,8 +101,6 @@ public class ReflectionControllerTest {
 		    will(returnValue(true));
 		    one (transaction).rollback();
 
-		    allowing (request).getServletPath();
-		    will(returnValue("/story/index"));
 		}});
 
 		ReflectionController controller = new ReflectionController(pmf) {
@@ -125,6 +116,15 @@ public class ReflectionControllerTest {
 			// expected
 		}
 
+	}
+	
+	private HttpServletRequest mockRequest(String servletPath) {
+		final HttpServletRequest request = context.mock(HttpServletRequest.class);;
+		context.checking(new Expectations() {{
+		    allowing (request).getServletPath();
+		    will(returnValue("/story/boom"));
+		}});
+		return request;
 	}
 
 }

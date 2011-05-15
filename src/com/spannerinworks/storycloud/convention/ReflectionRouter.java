@@ -1,7 +1,8 @@
 package com.spannerinworks.storycloud.convention;
 
-import java.net.URL;
+import java.lang.reflect.Constructor;
 
+import javax.jdo.PersistenceManagerFactory;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 
@@ -26,20 +27,21 @@ public class ReflectionRouter implements Router {
 		}
 		String controllerName = controllerPackage + "." + buf.toString() + "Controller";
 
-		try {
-			String pathToController = controllerName.replace('.', '/');
-			URL url = Thread.currentThread().getClass().getResource(pathToController);
-			
-			if (url != null) {
-				return null;
-			}
-			return (Controller)(Class.forName(controllerName).newInstance());
-		} catch (IllegalAccessException e) {
-			throw new ServletException("Controller not available", e);
-		} catch (ClassNotFoundException e) {
-			throw new ServletException("Cannot find controller", e);
-		} catch (InstantiationException e) {
-			throw new ServletException("Cannot create controller", e);
+		if (!controllerExists(controllerName)) {
+			return null;
 		}
+		
+		try {
+			Constructor<?> constructor = Class.forName(controllerName).getConstructor(PersistenceManagerFactory.class);
+			return (Controller) constructor.newInstance(PMF.get());
+		} catch (Exception e) {
+			throw new ServletException("Cannot create controller: " + controllerName, e);
+		}
+	}
+	
+	private boolean controllerExists(String controllerName) {
+		String pathToController = "/" + controllerName.replace('.', '/') + ".class";
+		
+		return this.getClass().getResource(pathToController) != null;
 	}
 }
